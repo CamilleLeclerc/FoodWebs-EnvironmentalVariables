@@ -35,9 +35,9 @@ myload(taxa_weight, dir = mypath("data")) ## Weight information for each taxa
 myload(niche_attributes, dir = mypath("data")) ## niche attributes for vertebrate and invertebrate consumers get from the allometric niche model of Vagnon et al. (2021)
 myload(inferred_pred_prey_links, dir = mypath("data")) ## predator-prey links inferred from the allometric niche model of Vagnon et al. (2021)
 myload(metaweb, dir = mypath("data")) ## metaweb gets from the allometric niche model of Vagnon et al. (2021)
-#                                     # see https://doi.org/10.1002/ecs2.3420
-#                                     # see https://esajournals.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fecs2.3420&file=ecs23420-sup-0004-AppendixS4.pdf
-#                                     # see https://github.com/chloevagnon/aNM_method
+                                      ## see https://doi.org/10.1002/ecs2.3420
+                                      ## see https://esajournals.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fecs2.3420&file=ecs23420-sup-0004-AppendixS4.pdf
+                                      ## see https://github.com/chloevagnon/aNM_method
 
 
 #Trophic level of taxa
