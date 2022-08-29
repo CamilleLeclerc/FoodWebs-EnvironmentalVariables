@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+
+data/ind_size.rda
+data/Param_regvert.rda
+rfunctions/get_nich_attributes.R
