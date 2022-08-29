@@ -1,4 +1,4 @@
-rm(list=ls())
+rm(list = ls()) #Removes all objects from the current workspace (R memory)
 mypath <- rprojroot::find_package_root_file
 
 
@@ -103,7 +103,7 @@ for (i in 1:nrow(list_lake)){
   links <- cbind(PredatorID = NodeNameIndices(foodweb, TLPS(foodweb)[,'consumer']), PreyID = NodeNameIndices(foodweb, TLPS(foodweb)[,'resource']))
   write.table(links, file.path("outputs/LakeFoodWebs/", paste('network_', list_lake[i,],'.web', sep = '')), row.names = FALSE, sep = ' ')
 
-  write.table(topological.metrics, file.path("outputs/TopologicalMetrics/", paste('topologicalmetrics_', list_lake[i,],'.txt', sep = '')), row.names = TRUE, col.names = TRUE, sep = ' ')
+  write.table(topological_metrics, file.path("outputs/TopologicalMetrics/", paste('topologicalmetrics_', list_lake[i,],'.txt', sep = '')), row.names = TRUE, col.names = TRUE, sep = ' ')
 
   rm(SP, SS, niche_attributes_lake, fwmatrix_lake, inferred_pred_prey_links_lake, nodes, trophic_links, property, foodweb, topological_metrics, links)
 
