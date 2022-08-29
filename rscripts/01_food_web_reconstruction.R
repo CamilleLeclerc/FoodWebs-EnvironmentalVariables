@@ -40,6 +40,17 @@ myload(metaweb, dir = mypath("data")) ## metaweb gets from the allometric niche 
 #                                     # see https://github.com/chloevagnon/aNM_method
 
 
+#Trophic level of taxa
+nodes <- data.frame(taxa_size$taxon, taxa_size$log.mean.size)
+colnames(nodes) <- c("node", "M")
+nodes$M <- as.numeric(as.character(nodes$M))
+trophic_links <- inferred_pred_prey_links %>% dplyr::select(prey, predator)
+colnames(trophic_links) <- c("resource", "consumer")
+property <- list(title = c("foodweb"), M.units = "Log10(μm)")
+foodweb <- Community(nodes, properties = property, trophic.links = trophic_links)
+PreyAveragedTrophicLevel(foodweb)
+
+
 
 
 ##-----------------------
