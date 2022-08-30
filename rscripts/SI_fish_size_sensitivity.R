@@ -13,6 +13,7 @@ library(tidyr)
 
 ##FUNCTIONS##
 source("rfunctions/misc.R")
+source("rfunctions/perc_overlap.R")
 
 
 ##DATA##
@@ -24,21 +25,26 @@ myload(ind_size, list_lake, taxa_presence, dir = mypath("data"))
 ##--------------------------------------------------------------
 ##"IND_SIZE" AND "TAXA_PRESENCE"/"LIST_LAKE": HARMONIZE DATASETS
 ##--------------------------------------------------------------
-sort(unique(ind_size$species)) #60 species
+##TAXA
+sort(unique(ind_size$species)) #62 species
 unique(taxa_presence %>% dplyr::filter(biol.compart == "vertebrate") %>% dplyr::select(taxon) %>% as.data.frame(.)) #46 species
 ind_size <- ind_size %>% filter(!species %in% c("Acipenser_ruthenus", "Alburnoides_bipunctatus", "Carassius_gibelio", 
                                                 "Chelon_auratus", "Cyprinidae", "Gambusia_affinis", "Gasterosteus_aculeatus", 
                                                 "Hypophthalmichthys_molitrix", "Mugilidae", "Neogobius_melanostomus",
-                                                "Percidae", "Salvelinus_namaycush")) 
+                                                "Percidae", "Salvelinus_namaycush", "Hybride_br�me-gardon", "Hybrides_de_cyprinid�s")) 
 ind_size$species[ind_size$species == "Abramis"] <- "Abramis_brama"
 ind_size$species[ind_size$species == "Salmo_trutta_fario"] <- "Salmo_trutta"
 ind_size$species[ind_size$species == "Salmo_trutta_lacustris"] <- "Salmo_trutta"
 
-sort(unique(ind_size$camp_annee)) #2005-2018
-length(unique(ind_size$code_lac)) #284 lakes
+#SAMPLING YEARS
+sort(unique(ind_size$camp_annee)) #2005-2020
+ind_size <- ind_size %>% dplyr::filter(camp_annee < 2020)
+sort(unique(ind_size$camp_annee)) #2005-2019
+
+#SAMPLING LAKES
+length(unique(ind_size$code_lac)) #285 lakes
 ind_size <- ind_size %>% dplyr::filter(code_lac %in% list_lake$cd.lac)
 length(unique(ind_size$code_lac)) #67 lakes
-sort(unique(ind_size$camp_annee)) #2005-2018
 
 
 
@@ -48,8 +54,8 @@ sort(unique(ind_size$camp_annee)) #2005-2018
 ##----------------------------------------------
 realized_ind_size <- ind_size %>%
                       drop_na(.) %>%
-                      dplyr::select(code_lac, species, fish) %>%
-                      group_by(code_lac, species) %>%
+                      dplyr::select(species, fish) %>% #code_lac
+                      group_by(species) %>% #code_lac
                       summarise_at(vars(fish), list('N' = ~length(.),
                                                       'Mean' = ~ mean(.) %>% round(., digits = 3),
                                                       'Std. Dev.' = ~ se(.) %>% round(., digits = 3),
@@ -60,9 +66,9 @@ realized_ind_size <- ind_size %>%
 
 
 
-##-------------------------------------------------------------------------------
-##GETING NICHE ATTRIBUTES FROM THE ALLOMETRIC NICHE MODEL OF VAGNON ET AL. (2021)
-##-------------------------------------------------------------------------------
+##--------------------------------------------------------------------------------
+##GETTING NICHE ATTRIBUTES FROM THE ALLOMETRIC NICHE MODEL OF VAGNON ET AL. (2021)
+##--------------------------------------------------------------------------------
 ## see https://doi.org/10.1002/ecs2.3420
 ## see https://esajournals.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fecs2.3420&file=ecs23420-sup-0004-AppendixS4.pdf
 ## see https://github.com/chloevagnon/aNM_method
@@ -71,16 +77,102 @@ source("rfunctions/get_niche_attributes.R") #the function “get_Niche_attribute
 load("data/Param_regvert.Rdata") # niche attributes for vertebrate consumers get from the allometric niche model of Vagnon et al. (2021)
 
 realized_ind_size$log.mean.size <- log10((realized_ind_size$Mean)*1000) #to mm and to µm
+realized_ind_size$log.max.size <- log10((realized_ind_size$Max)*1000) #to mm and to µm
+realized_ind_size$log.min.size <- log10((realized_ind_size$Min)*1000) #to mm and to µm
 
 #The niche attributes are: n = consumer size (niche position) / c = center of the consumer feeding range (r) / low and upp = minimal and maximal sizes of preys that determine the consumer feeding range (r)
-niche_attributes_realized_size <- data.frame(matrix(NA, nrow = nrow(realized_ind_size), ncol = 4))
-rownames(niche_attributes_realized_size) <- paste(realized_ind_size$species, realized_ind_size$code_lac, sep = "_")
-colnames(niche_attributes_realized_size) <- c("n", "c", "low", "upp")
-
-for (j in 1:nrow(realized_ind_size)){ niche_attributes_realized_size[j,] <- get_niche_attributes(consumer_size = realized_ind_size$log.mean.size[j], consumer_category = "vertebrate") }
+#Mean body size used
+niche_attributes_realized_meansize <- data.frame(matrix(NA, nrow = nrow(realized_ind_size), ncol = 4))
+rownames(niche_attributes_realized_meansize) <- realized_ind_size$species #paste(realized_ind_meansize$species, realized_ind_meansize$code_lac, sep = "_")
+colnames(niche_attributes_realized_meansize) <- c("n", "c", "low", "upp")
+for (j in 1:nrow(realized_ind_size)){ niche_attributes_realized_meansize[j,] <- get_niche_attributes(consumer_size = realized_ind_size$log.mean.size[j], consumer_category = "vertebrate") }
 rm(j)
 
-niche_attributes_realized_size$taxon <- realized_ind_size$species
-niche_attributes_realized_size$code_lac <- realized_ind_size$code_lac
-rownames(niche_attributes_realized_size) <- NULL
 
+#Max body size used
+niche_attributes_realized_maxsize <- data.frame(matrix(NA, nrow = nrow(realized_ind_size), ncol = 4))
+rownames(niche_attributes_realized_maxsize) <- realized_ind_size$species
+colnames(niche_attributes_realized_maxsize) <- c("n", "c", "low", "upp")
+for (j in 1:nrow(realized_ind_size)){ niche_attributes_realized_maxsize[j,] <- get_niche_attributes(consumer_size = realized_ind_size$log.max.size[j], consumer_category = "vertebrate") }
+rm(j)
+
+
+#Min body size used
+niche_attributes_realized_minsize <- data.frame(matrix(NA, nrow = nrow(realized_ind_size), ncol = 4))
+rownames(niche_attributes_realized_minsize) <- realized_ind_size$species
+colnames(niche_attributes_realized_minsize) <- c("n", "c", "low", "upp")
+for (j in 1:nrow(realized_ind_size)){ niche_attributes_realized_minsize[j,] <- get_niche_attributes(consumer_size = realized_ind_size$log.min.size[j], consumer_category = "vertebrate") }
+rm(j)
+
+
+
+
+##---------------------------------------------------------------------------------
+##COMPARING NICHE ATTRIBUTES FROM LITERATURE BASED-BODY SIZE AND REALIZED BODY SIZE
+##---------------------------------------------------------------------------------
+myload(niche_attributes, taxa_size, dir = mypath("data"))
+niche_attributes <- niche_attributes[1:46,]
+taxa_size <- taxa_size[1:46,]
+
+
+#Mean realized body size used
+overlap_niche_meansize <- data.frame(matrix(NA, nrow = nrow(niche_attributes), ncol = 12))
+colnames(overlap_niche_meansize) <- c("species", "logsize.lit", "n.lit", "c.lit", "low.lit", "upp.lit", "logsize.rea", "n.rea", "c.rea", "low.rea", "upp.rea", "perc_overlap")
+
+for (i in 1:nrow(overlap_niche_meansize)){ 
+overlap_niche_meansize[i, 1] <- taxa_size$taxon[i]
+overlap_niche_meansize[i, 2] <- taxa_size$log.mean.size[i]
+overlap_niche_meansize[i, 3] <- niche_attributes$n[i]
+overlap_niche_meansize[i, 4] <- niche_attributes$c[i]
+overlap_niche_meansize[i, 5] <- niche_attributes$low[i]
+overlap_niche_meansize[i, 6] <- niche_attributes$upp[i]
+overlap_niche_meansize[i, 7] <- realized_ind_size$log.mean.size[i]
+overlap_niche_meansize[i, 8] <- niche_attributes_realized_meansize$n[i]
+overlap_niche_meansize[i, 9] <- niche_attributes_realized_meansize$c[i]
+overlap_niche_meansize[i, 10] <- niche_attributes_realized_meansize$low[i]
+overlap_niche_meansize[i, 11] <- niche_attributes_realized_meansize$upp[i]
+overlap_niche_meansize[i, 12] <- perc_overlap(niche_attributes$low[i], niche_attributes$upp[i], niche_attributes_realized_meansize$low[i], niche_attributes_realized_meansize$upp[i])
+}
+rm(i)
+
+
+#Max realized body size used
+overlap_niche_maxsize <- data.frame(matrix(NA, nrow = nrow(niche_attributes), ncol = 12))
+colnames(overlap_niche_maxsize) <- c("species", "logsize.lit", "n.lit", "c.lit", "low.lit", "upp.lit", "logsize.rea", "n.rea", "c.rea", "low.rea", "upp.rea", "perc_overlap")
+
+for (i in 1:nrow(overlap_niche_maxsize)){ 
+  overlap_niche_maxsize[i, 1] <- taxa_size$taxon[i]
+  overlap_niche_maxsize[i, 2] <- taxa_size$log.mean.size[i]
+  overlap_niche_maxsize[i, 3] <- niche_attributes$n[i]
+  overlap_niche_maxsize[i, 4] <- niche_attributes$c[i]
+  overlap_niche_maxsize[i, 5] <- niche_attributes$low[i]
+  overlap_niche_maxsize[i, 6] <- niche_attributes$upp[i]
+  overlap_niche_maxsize[i, 7] <- realized_ind_size$log.max.size[i]
+  overlap_niche_maxsize[i, 8] <- niche_attributes_realized_maxsize$n[i]
+  overlap_niche_maxsize[i, 9] <- niche_attributes_realized_maxsize$c[i]
+  overlap_niche_maxsize[i, 10] <- niche_attributes_realized_maxsize$low[i]
+  overlap_niche_maxsize[i, 11] <- niche_attributes_realized_maxsize$upp[i]
+  overlap_niche_maxsize[i, 12] <- perc_overlap(niche_attributes$low[i], niche_attributes$upp[i], niche_attributes_realized_maxsize$low[i], niche_attributes_realized_maxsize$upp[i])
+}
+rm(i)
+
+
+#Min realized body size used
+overlap_niche_minsize <- data.frame(matrix(NA, nrow = nrow(niche_attributes), ncol = 12))
+colnames(overlap_niche_minsize) <- c("species", "logsize.lit", "n.lit", "c.lit", "low.lit", "upp.lit", "logsize.rea", "n.rea", "c.rea", "low.rea", "upp.rea", "perc_overlap")
+
+for (i in 1:nrow(overlap_niche_minsize)){ 
+  overlap_niche_minsize[i, 1] <- taxa_size$taxon[i]
+  overlap_niche_minsize[i, 2] <- taxa_size$log.mean.size[i]
+  overlap_niche_minsize[i, 3] <- niche_attributes$n[i]
+  overlap_niche_minsize[i, 4] <- niche_attributes$c[i]
+  overlap_niche_minsize[i, 5] <- niche_attributes$low[i]
+  overlap_niche_minsize[i, 6] <- niche_attributes$upp[i]
+  overlap_niche_minsize[i, 7] <- realized_ind_size$log.min.size[i]
+  overlap_niche_minsize[i, 8] <- niche_attributes_realized_minsize$n[i]
+  overlap_niche_minsize[i, 9] <- niche_attributes_realized_minsize$c[i]
+  overlap_niche_minsize[i, 10] <- niche_attributes_realized_minsize$low[i]
+  overlap_niche_minsize[i, 11] <- niche_attributes_realized_minsize$upp[i]
+  overlap_niche_minsize[i, 12] <- perc_overlap(niche_attributes$low[i], niche_attributes$upp[i], niche_attributes_realized_minsize$low[i], niche_attributes_realized_minsize$upp[i])
+}
+rm(i)
