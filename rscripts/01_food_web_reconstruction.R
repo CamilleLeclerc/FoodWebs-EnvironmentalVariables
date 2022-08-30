@@ -58,7 +58,7 @@ PreyAveragedTrophicLevel(foodweb)
 ##-----------------------
 for (i in 1:nrow(list_lake)){ 
 
-  SP <- taxa_presence %>% filter(cd.lac == list_lake[i,])
+  SP <- taxa_presence %>% filter(cd.lac == list_lake$cd.lac[i])
   SS <- taxa_size %>% filter(taxon %in% SP$taxon)
   SS$length <- as.numeric(as.character(SS$length))
   SS$log.mean.size <- as.numeric(as.character(SS$log.mean.size))
@@ -106,15 +106,15 @@ for (i in 1:nrow(list_lake)){
                                      "Generality", "Vulnerability", "SD.generality", "SD.vulnerability",
                                      "Fraction.basal.nodes", "Fraction.intermediate.nodes", "Fraction.top.nodes",
                                      "Maximum.similarity", "Mean.food.chain.length", "Mean.trophic.level", "Maximum.trophic.level", "Clustering.coefficient")
-  colnames(topological_metrics) <- list_lake[i,]
+  colnames(topological_metrics) <- list_lake$cd.lac[i]
   topological_metrics <- t(topological_metrics)
 
 
   ## Exportation the Cheddar community object and the associated species metrics to ‘.web’ and ‘.txt’ files that can be used by the Network 3D Windows software for additionnal investigations.
   links <- cbind(PredatorID = NodeNameIndices(foodweb, TLPS(foodweb)[,'consumer']), PreyID = NodeNameIndices(foodweb, TLPS(foodweb)[,'resource']))
-  write.table(links, file.path("outputs/LakeFoodWebs/", paste('network_', list_lake[i,],'.web', sep = '')), row.names = FALSE, sep = ' ')
+  write.table(links, file.path("outputs/LakeFoodWebs/", paste('network_', list_lake$cd.lac[i],'.web', sep = '')), row.names = FALSE, sep = ' ')
 
-  write.table(topological_metrics, file.path("outputs/TopologicalMetrics/", paste('topologicalmetrics_', list_lake[i,],'.txt', sep = '')), row.names = TRUE, col.names = TRUE, sep = ' ')
+  write.table(topological_metrics, file.path("outputs/TopologicalMetrics/", paste('topologicalmetrics_', list_lake$cd.lac[i],'.txt', sep = '')), row.names = TRUE, col.names = TRUE, sep = ' ')
 
   rm(SP, SS, niche_attributes_lake, fwmatrix_lake, inferred_pred_prey_links_lake, nodes, trophic_links, property, foodweb, topological_metrics, links)
 

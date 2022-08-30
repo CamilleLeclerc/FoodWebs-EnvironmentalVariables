@@ -5,4 +5,3 @@
 
 data/ind_size.rda
 data/Param_regvert.Rdata
-rfunctions/get_niche_attributes.R
