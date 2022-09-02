@@ -14,8 +14,6 @@ library(ggbiplot)
 
 ##FUNCTIONS##
 source("rfunctions/misc.R")
-source("rfunctions/geom_flat_violin.R")
-source("rfunctions/theme_niwot_ggplot2.R")
 
 
 ##DATA##
@@ -66,3 +64,4 @@ ggbiplot(data.pca, obs.scale = 1, var.scale = 1, circle = TRUE, pointsize = 3) +
   theme_bw() + scale_y_continuous(breaks = seq(-5, 5, by = 2.5)) + scale_x_continuous(breaks = seq(-12, 8, by = 4)) +
   theme(axis.title.x = element_text(face = "bold", colour = "black", size = 16, vjust = 0), axis.text.x = element_text(colour = "black", size = 12)) +
   theme(axis.title.y = element_text(face = "bold", colour = "black", size = 16, vjust = 0.2), axis.text.y  = element_text(colour = "black", size = 12))
+

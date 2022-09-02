@@ -8,6 +8,7 @@ mypath <- rprojroot::find_package_root_file
 ##PACKAGES##
 library(dplyr)
 library(ggplot2)
+library(PupillometryR)
 library(plyr)
 library(stringr)
 library(tidyr)
@@ -15,7 +16,6 @@ library(tidyr)
 
 ##FUNCTIONS##
 source("rfunctions/misc.R")
-source("rfunctions/geom_flat_violin.R")
 
 
 
@@ -59,9 +59,9 @@ data <- data %>% filter(!(text %in% c("Taxa rich.", "Fish rich.", "Invertebr. ri
 
 p <- data %>%
       ggplot(aes(x = text, y = value), color = "#bebebe", fill = "#000000") +
-      geom_point(aes(y = value), position = position_jitter(width = 0.2, height = 0, seed = NULL), size = 1, alpha = 0.5) +
+      geom_point(aes(y = value), position = position_jitter(width = 0.25, height = 0, seed = NULL), size = 1, alpha = 0.5) +
       geom_boxplot(width = 0.4, outlier.shape = NA, alpha = 0.8) +
-      geom_flat_violin(trim = FALSE, position = position_nudge(x = 0.15, y = 0), alpha = 0.8) +
+      PupillometryR::geom_flat_violin(trim = FALSE, position = position_nudge(x = 0.3, y = 0), alpha = 0.8) +
       facet_wrap(~text, ncol = 6, scales = "free") +
       theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                          legend.position = "none",
