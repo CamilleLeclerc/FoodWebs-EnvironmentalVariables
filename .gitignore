@@ -5,5 +5,4 @@
 
 data/ind_size.rda
 data/Param_regvert.Rdata
-data/Param_Param_reginvert.Rdata
-
+data/Param_reginvert.Rdata
