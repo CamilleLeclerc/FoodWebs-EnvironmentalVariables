@@ -18,8 +18,16 @@ source("rfunctions/relative_contributions.R")
 
 
 ##DATA##
-top_models <- lapply(c("/gam_dim1_reduce_model.rds", "gam_dim2_reduce_model.rds"), function(mods) { readRDS(paste0("outputs/", mods)) })
-model_names <- c("Dim1", "Dim2")
+top_models <- lapply(c("gam_srtotal_reduce_model.rds", "gam_srinvertebrate_reduce_model.rds", "gam_LD_reduce_model.rds"), function(mods) {
+  readRDS(paste0("outputs/", mods))
+})
+model_names = c("srtotal", "srinvertebrate", "LD")
+
+
+top_models <- lapply(c("gam_srvertebrate_reduce_model.rds", "gam_MFCL_reduce_model.rds", "gam_MTL_reduce_model.rds"), function(mods) {
+  readRDS(paste0("outputs/", mods))
+})
+model_names = c("srvertebrate", "MFCL", "MTL")
 
 
 
@@ -50,8 +58,8 @@ model_tables <- map2(top_models, model_names, function(modd, model_name) {  summ
                                                                                                  `Total Dev. Explained` = paste0(round(summary(modd)$dev.expl*100, 1), "%"),
                                                                                                  `Relative Dev. Explained` = paste0(round(100*rel_dev$rel_deviance_explained, 1), "%"),
                                                                                                  model = model_name))
-  
-                                                                        })
+
+})
 
 model_rows <- map_int(model_tables, nrow)
 model_tables2 <- model_tables %>%
@@ -66,3 +74,4 @@ model_tables2 <- model_tables %>%
   dplyr::select(9, 1:8)
 
 names(model_tables2)[1] <- ""
+
