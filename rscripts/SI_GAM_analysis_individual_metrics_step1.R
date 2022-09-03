@@ -93,7 +93,7 @@ gam.srtotal <- mgcv::gam(formula = srtotal ~  s(sp_resid_srtotal, bs = "cr", k =
                       method = "REML")  
 
 summary(gam.srtotal)
-saveRDS(gam.srtotal, "outputs/gam_srtotal.rds")
+saveRDS(gam.srtotal, "outputs/SI_IndividualMetricsAnalysis/gam_srtotal.rds")
 
 
 gam.srtotal.best <- mgcv::gam(formula = srtotal ~ 
@@ -120,7 +120,7 @@ plot(fitted(gam.srtotal), observed.y, xlab = "Fitted Values", ylab = "Response",
 
 concurvity(gam.srtotal.best, full = TRUE)
 
-saveRDS(gam.srtotal.best, "outputs/gam_srtotal_reduce_model.rds")
+saveRDS(gam.srtotal.best, "outputs/SI_IndividualMetricsAnalysis/gam_srtotal_reduce_model.rds")
 
 
 # 2.RESPONSE VARIABLE = SR.INVERTEBRATE
@@ -143,7 +143,7 @@ gam.srinvertebrate <- mgcv::gam(formula = srinvertebrate ~  s(sp_resid_srinverte
                          method = "REML")  
 
 summary(gam.srinvertebrate)
-saveRDS(gam.srinvertebrate, "outputs/gam_srinvertebrate.rds")
+saveRDS(gam.srinvertebrate, "outputs/SI_IndividualMetricsAnalysis/gam_srinvertebrate.rds")
 
 
 gam.srinvertebrate.best <- mgcv::gam(formula = srinvertebrate ~ 
@@ -170,7 +170,7 @@ plot(fitted(gam.srinvertebrate), observed.y, xlab = "Fitted Values", ylab = "Res
 
 concurvity(gam.srinvertebrate.best, full = TRUE)
 
-saveRDS(gam.srinvertebrate.best, "outputs/gam_srinvertebrate_reduce_model.rds")
+saveRDS(gam.srinvertebrate.best, "outputs/SI_IndividualMetricsAnalysis/gam_srinvertebrate_reduce_model.rds")
 
 
 # 3.RESPONSE VARIABLE = LINKAGE.DENSITY
@@ -193,7 +193,7 @@ gam.LD <- mgcv::gam(formula = LD ~  s(sp_resid_LD, bs = "cr", k = 3) +
                                 method = "REML")  
 
 summary(gam.LD)
-saveRDS(gam.LD, "outputs/gam_LD.rds")
+saveRDS(gam.LD, "outputs/SI_IndividualMetricsAnalysis/gam_LD.rds")
 
 
 gam.LD.best <- mgcv::gam(formula = LD ~ s(sp_resid_LD, bs = "cr", k = 3) +
@@ -220,7 +220,7 @@ plot(fitted(gam.LD), observed.y, xlab = "Fitted Values", ylab = "Response", main
 
 concurvity(gam.LD.best, full = TRUE)
 
-saveRDS(gam.LD.best, "outputs/gam_LD_reduce_model.rds")
+saveRDS(gam.LD.best, "outputs/SI_IndividualMetricsAnalysis/gam_LD_reduce_model.rds")
 
 
 # 4.RESPONSE VARIABLE = SR.VERTEBRATE
@@ -243,7 +243,7 @@ gam.srvertebrate <- mgcv::gam(formula = srvertebrate ~  s(sp_resid_srvertebrate,
                                 method = "REML")  
 
 summary(gam.srvertebrate)
-saveRDS(gam.srvertebrate, "outputs/gam_srvertebrate.rds")
+saveRDS(gam.srvertebrate, "outputs/SI_IndividualMetricsAnalysis/gam_srvertebrate.rds")
 
 
 gam.srvertebrate.best <- mgcv::gam(formula = srvertebrate ~ s(sp_resid_srvertebrate, bs = "cr", k = 3) +
@@ -270,7 +270,7 @@ plot(fitted(gam.srvertebrate), observed.y, xlab = "Fitted Values", ylab = "Respo
 
 concurvity(gam.srvertebrate.best, full = TRUE)
 
-saveRDS(gam.srvertebrate.best, "outputs/gam_srvertebrate_reduce_model.rds")
+saveRDS(gam.srvertebrate.best, "outputs/SI_IndividualMetricsAnalysis/gam_srvertebrate_reduce_model.rds")
 
 
 # 5.RESPONSE VARIABLE = MEAN.FOOD.CHAIN.LENGTH
@@ -293,7 +293,7 @@ gam.MFCL <- mgcv::gam(formula = MFCL ~  s(sp_resid_MFCL, bs = "cr", k = 3) +
                               method = "REML")  
 
 summary(gam.MFCL)
-saveRDS(gam.MFCL, "outputs/gam_MFCL.rds")
+saveRDS(gam.MFCL, "outputs/SI_IndividualMetricsAnalysis/gam_MFCL.rds")
 
 
 gam.MFCL.best <- mgcv::gam(formula = MFCL ~ 
@@ -320,7 +320,7 @@ plot(fitted(gam.MFCL), observed.y, xlab = "Fitted Values", ylab = "Response", ma
 
 concurvity(gam.MFCL.best, full = TRUE)
 
-saveRDS(gam.MFCL.best, "outputs/gam_MFCL_reduce_model.rds")
+saveRDS(gam.MFCL.best, "outputs/SI_IndividualMetricsAnalysis/gam_MFCL_reduce_model.rds")
 
 
 # 6.RESPONSE VARIABLE = MEAN.TOPHIC.LEVEL
@@ -343,7 +343,7 @@ gam.MTL <- mgcv::gam(formula = MTL ~  s(sp_resid_MTL, bs = "cr", k = 3) +
                       method = "REML")  
 
 summary(gam.MTL)
-saveRDS(gam.MTL, "outputs/gam_MTL.rds")
+saveRDS(gam.MTL, "outputs/SI_IndividualMetricsAnalysis/gam_MTL.rds")
 
 
 gam.MTL.best <- mgcv::gam(formula = MTL ~ s(sp_resid_MTL, bs = "cr", k = 3) +
@@ -370,4 +370,4 @@ plot(fitted(gam.MTL), observed.y, xlab = "Fitted Values", ylab = "Response", mai
 
 concurvity(gam.MTL.best, full = TRUE)
 
-saveRDS(gam.MTL.best, "outputs/gam_MTL_reduce_model.rds")
+saveRDS(gam.MTL.best, "outputs/SI_IndividualMetricsAnalysis/gam_MTL_reduce_model.rds")

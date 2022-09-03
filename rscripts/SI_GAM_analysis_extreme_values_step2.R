@@ -22,7 +22,7 @@ top_models <- lapply(c("gam_dim1_extremevalueSDI_reduce_model.rds", "gam_dim2_ex
                        "gam_dim1_extremevalueDOC_reduce_model.rds", "gam_dim2_extremevalueDOC_reduce_model.rds",
                        "gam_dim1_extremevalueTempMean_reduce_model.rds", "gam_dim2_extremevalueTempMean_reduce_model.rds",
                        "gam_dim1_extremevalueTempSeason_reduce_model.rds", "gam_dim2_extremevalueTempSeason_reduce_model.rds"), function(mods) {
-  readRDS(paste0("outputs/", mods))
+  readRDS(paste0("outputs/SI_InfluenceExtremeValues/", mods))
 })
 model_names = c("DIM 1 - SDI", "DIM 2 - SDI",
                 "DIM 1 - DOC", "DIM 2 - DOC",

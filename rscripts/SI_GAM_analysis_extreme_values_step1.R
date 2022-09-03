@@ -99,7 +99,7 @@ gam.dim1 <- mgcv::gam(formula = dim1 ~  s(sp_resid_dim1, bs = "cr", k = 3) +
                       family = "gaussian",
                       method = "REML")  
 summary(gam.dim1)
-saveRDS(gam.dim1, "outputs/gam_dim1_extremevalueSDI.rds")
+saveRDS(gam.dim1, "outputs/SI_InfluenceExtremeValues/gam_dim1_extremevalueSDI.rds")
 
 
 gam.dim1.best <- mgcv::gam(formula = dim1 ~ 
@@ -126,7 +126,7 @@ plot(fitted(gam.dim1), observed.y, xlab = "Fitted Values", ylab = "Response", ma
 
 concurvity(gam.dim1.best, full = TRUE)
 
-saveRDS(gam.dim1.best, "outputs/gam_dim1_extremevalueSDI_reduce_model.rds")
+saveRDS(gam.dim1.best, "outputs/SI_InfluenceExtremeValues/gam_dim1_extremevalueSDI_reduce_model.rds")
 rm(auto.dim1, RF.dim1, RF.dim1.resid, lakeSDI, gam.dim1, gam.dim1.best, type, resid, linpred, observed.y)
 
 
@@ -153,7 +153,7 @@ gam.dim2 <- mgcv::gam(formula = dim2 ~  s(sp_resid_dim2, bs = "cr", k = 3) +
                       family = "gaussian",
                       method = "REML")  
 summary(gam.dim2)
-saveRDS(gam.dim2, "outputs/gam_dim2_extremevalueSDI.rds")
+saveRDS(gam.dim2, "outputs/SI_InfluenceExtremeValues/gam_dim2_extremevalueSDI.rds")
 
 
 gam.dim2.best <- mgcv::gam(formula = dim2 ~ s(sp_resid_dim2, bs = "cr", k = 3) +
@@ -180,7 +180,7 @@ plot(fitted(gam.dim2), observed.y, xlab = "Fitted Values", ylab = "Response", ma
 
 concurvity(gam.dim2.best, full = TRUE)
 
-saveRDS(gam.dim2.best, "outputs/gam_dim2_extremevalueSDI_reduce_model.rds")
+saveRDS(gam.dim2.best, "outputs/SI_InfluenceExtremeValues/gam_dim2_extremevalueSDI_reduce_model.rds")
 rm(auto.dim2, RF.dim2, RF.dim2.resid, lakeSDI, gam.dim2, gam.dim2.best, type, resid, linpred, observed.y)
 rm(SDI, SDIgeopoints, SDIknn, SDIbw)
 
@@ -217,7 +217,7 @@ gam.dim1 <- mgcv::gam(formula = dim1 ~  s(sp_resid_dim1, bs = "cr", k = 3) +
                       family = "gaussian",
                       method = "REML")  
 summary(gam.dim1)
-saveRDS(gam.dim1, "outputs/gam_dim1_extremevalueDOC.rds")
+saveRDS(gam.dim1, "outputs/SI_InfluenceExtremeValues/gam_dim1_extremevalueDOC.rds")
 
 
 gam.dim1.best <- mgcv::gam(formula = dim1 ~ 
@@ -244,7 +244,7 @@ plot(fitted(gam.dim1), observed.y, xlab = "Fitted Values", ylab = "Response", ma
 
 concurvity(gam.dim1.best, full = TRUE)
 
-saveRDS(gam.dim1.best, "outputs/gam_dim1_extremevalueDOC_reduce_model.rds")
+saveRDS(gam.dim1.best, "outputs/SI_InfluenceExtremeValues/gam_dim1_extremevalueDOC_reduce_model.rds")
 rm(auto.dim1, RF.dim1, RF.dim1.resid, lakeDOC, gam.dim1, gam.dim1.best, type, resid, linpred, observed.y)
 
 
@@ -271,7 +271,7 @@ gam.dim2 <- mgcv::gam(formula = dim2 ~  s(sp_resid_dim2, bs = "cr", k = 3) +
                       family = "gaussian",
                       method = "REML")  
 summary(gam.dim2)
-saveRDS(gam.dim2, "outputs/gam_dim2_extremevalueDOC.rds")
+saveRDS(gam.dim2, "outputs/SI_InfluenceExtremeValues/gam_dim2_extremevalueDOC.rds")
 
 
 gam.dim2.best <- mgcv::gam(formula = dim2 ~ s(sp_resid_dim2, bs = "cr", k = 3) +
@@ -298,7 +298,7 @@ plot(fitted(gam.dim2), observed.y, xlab = "Fitted Values", ylab = "Response", ma
 
 concurvity(gam.dim2.best, full = TRUE)
 
-saveRDS(gam.dim2.best, "outputs/gam_dim2_extremevalueDOC_reduce_model.rds")
+saveRDS(gam.dim2.best, "outputs/SI_InfluenceExtremeValues/gam_dim2_extremevalueDOC_reduce_model.rds")
 rm(auto.dim2, RF.dim2, RF.dim2.resid, lakeDOC, gam.dim2, gam.dim2.best, type, resid, linpred, observed.y)
 rm(DOC, DOCgeopoints, DOCknn, DOCbw)
 
@@ -335,7 +335,7 @@ gam.dim1 <- mgcv::gam(formula = dim1 ~  s(sp_resid_dim1, bs = "cr", k = 3) +
                       family = "gaussian",
                       method = "REML")  
 summary(gam.dim1)
-saveRDS(gam.dim1, "outputs/gam_dim1_extremevalueTempMean.rds")
+saveRDS(gam.dim1, "outputs/SI_InfluenceExtremeValues/gam_dim1_extremevalueTempMean.rds")
 
 
 gam.dim1.best <- mgcv::gam(formula = dim1 ~ 
@@ -362,7 +362,7 @@ plot(fitted(gam.dim1), observed.y, xlab = "Fitted Values", ylab = "Response", ma
 
 concurvity(gam.dim1.best, full = TRUE)
 
-saveRDS(gam.dim1.best, "outputs/gam_dim1_extremevalueTempMean_reduce_model.rds")
+saveRDS(gam.dim1.best, "outputs/SI_InfluenceExtremeValues/gam_dim1_extremevalueTempMean_reduce_model.rds")
 rm(auto.dim1, RF.dim1, RF.dim1.resid, lakeTempMean, gam.dim1, gam.dim1.best, type, resid, linpred, observed.y)
 
 
@@ -389,7 +389,7 @@ gam.dim2 <- mgcv::gam(formula = dim2 ~  s(sp_resid_dim2, bs = "cr", k = 3) +
                       family = "gaussian",
                       method = "REML")  
 summary(gam.dim2)
-saveRDS(gam.dim2, "outputs/gam_dim2_extremevalueTempMean.rds")
+saveRDS(gam.dim2, "outputs/SI_InfluenceExtremeValues/gam_dim2_extremevalueTempMean.rds")
 
 
 gam.dim2.best <- mgcv::gam(formula = dim2 ~ s(sp_resid_dim2, bs = "cr", k = 3) +
@@ -416,7 +416,7 @@ plot(fitted(gam.dim2), observed.y, xlab = "Fitted Values", ylab = "Response", ma
 
 concurvity(gam.dim2.best, full = TRUE)
 
-saveRDS(gam.dim2.best, "outputs/gam_dim2_extremevalueTempMean_reduce_model.rds")
+saveRDS(gam.dim2.best, "outputs/SI_InfluenceExtremeValues/gam_dim2_extremevalueTempMean_reduce_model.rds")
 rm(auto.dim2, RF.dim2, RF.dim2.resid, lakeTempMean, gam.dim2, gam.dim2.best, type, resid, linpred, observed.y)
 rm(TempMean, TempMeangeopoints, TempMeanknn, TempMeanbw)
 
@@ -453,7 +453,7 @@ gam.dim1 <- mgcv::gam(formula = dim1 ~  s(sp_resid_dim1, bs = "cr", k = 3) +
                       family = "gaussian",
                       method = "REML")  
 summary(gam.dim1)
-saveRDS(gam.dim1, "outputs/gam_dim1_extremevalueTempSeason.rds")
+saveRDS(gam.dim1, "outputs/SI_InfluenceExtremeValues/gam_dim1_extremevalueTempSeason.rds")
 
 
 gam.dim1.best <- mgcv::gam(formula = dim1 ~ 
@@ -480,7 +480,7 @@ plot(fitted(gam.dim1), observed.y, xlab = "Fitted Values", ylab = "Response", ma
 
 concurvity(gam.dim1.best, full = TRUE)
 
-saveRDS(gam.dim1.best, "outputs/gam_dim1_extremevalueTempSeason_reduce_model.rds")
+saveRDS(gam.dim1.best, "outputs/SI_InfluenceExtremeValues/gam_dim1_extremevalueTempSeason_reduce_model.rds")
 rm(auto.dim1, RF.dim1, RF.dim1.resid, lakeTempSeason, gam.dim1, gam.dim1.best, type, resid, linpred, observed.y)
 
 
@@ -507,7 +507,7 @@ gam.dim2 <- mgcv::gam(formula = dim2 ~  s(sp_resid_dim2, bs = "cr", k = 3) +
                       family = "gaussian",
                       method = "REML")  
 summary(gam.dim2)
-saveRDS(gam.dim2, "outputs/gam_dim2_extremevalueTempSeason.rds")
+saveRDS(gam.dim2, "outputs/SI_InfluenceExtremeValues/gam_dim2_extremevalueTempSeason.rds")
 
 
 gam.dim2.best <- mgcv::gam(formula = dim2 ~ s(sp_resid_dim2, bs = "cr", k = 3) +
@@ -534,7 +534,7 @@ plot(fitted(gam.dim2), observed.y, xlab = "Fitted Values", ylab = "Response", ma
 
 concurvity(gam.dim2.best, full = TRUE)
 
-saveRDS(gam.dim2.best, "outputs/gam_dim2_extremevalueTempSeason_reduce_model.rds")
+saveRDS(gam.dim2.best, "outputs/SI_InfluenceExtremeValues/gam_dim2_extremevalueTempSeason_reduce_model.rds")
 rm(auto.dim2, RF.dim2, RF.dim2.resid, lakeTempSeason, gam.dim2, gam.dim2.best, type, resid, linpred, observed.y)
 rm(TempSeason, TempSeasongeopoints, TempSeasonknn, TempSeasonbw)
 

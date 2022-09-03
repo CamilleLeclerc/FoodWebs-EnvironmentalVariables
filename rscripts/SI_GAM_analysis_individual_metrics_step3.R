@@ -18,14 +18,14 @@ source("rfunctions/theme_niwot.R")
 
 ##DATA##
 gam.dim1 <- readRDS("outputs/gam_dim1.rds")
-gam.srtotal <- readRDS("outputs/gam_srtotal.rds")
-gam.srinvertebrate <- readRDS("outputs/gam_srinvertebrate.rds")
-gam.LD <- readRDS("outputs/gam_LD.rds")
+gam.srtotal <- readRDS("outputs/SI_IndividualMetricsAnalysis/gam_srtotal.rds")
+gam.srinvertebrate <- readRDS("outputs/SI_IndividualMetricsAnalysis/gam_srinvertebrate.rds")
+gam.LD <- readRDS("outputs/SI_IndividualMetricsAnalysis/gam_LD.rds")
 
 gam.dim2 <- readRDS("outputs/gam_dim2.rds")
-gam.srvertebrate <- readRDS("outputs/gam_srvertebrate.rds")
-gam.MFCL <- readRDS("outputs/gam_MFCL.rds")
-gam.MTL <- readRDS("outputs/gam_MTL.rds")
+gam.srvertebrate <- readRDS("outputs/SI_IndividualMetricsAnalysis/gam_srvertebrate.rds")
+gam.MFCL <- readRDS("outputs/SI_IndividualMetricsAnalysis/gam_MFCL.rds")
+gam.MTL <- readRDS("outputs/SI_IndividualMetricsAnalysis/gam_MTL.rds")
 
 
 

@@ -18,16 +18,12 @@ source("rfunctions/relative_contributions.R")
 
 
 ##DATA##
-top_models <- lapply(c("gam_srtotal_reduce_model.rds", "gam_srinvertebrate_reduce_model.rds", "gam_LD_reduce_model.rds"), function(mods) {
-  readRDS(paste0("outputs/", mods))
+top_models <- lapply(c("gam_srtotal_reduce_model.rds", "gam_srinvertebrate_reduce_model.rds", "gam_LD_reduce_model.rds",
+                       "gam_srvertebrate_reduce_model.rds", "gam_MFCL_reduce_model.rds", "gam_MTL_reduce_model.rds"), function(mods) {
+  readRDS(paste0("outputs/SI_IndividualMetricsAnalysis/", mods))
 })
-model_names = c("srtotal", "srinvertebrate", "LD")
-
-
-top_models <- lapply(c("gam_srvertebrate_reduce_model.rds", "gam_MFCL_reduce_model.rds", "gam_MTL_reduce_model.rds"), function(mods) {
-  readRDS(paste0("outputs/", mods))
-})
-model_names = c("srvertebrate", "MFCL", "MTL")
+model_names = c("srtotal", "srinvertebrate", "LD",
+                "srvertebrate", "MFCL", "MTL")
 
 
 
