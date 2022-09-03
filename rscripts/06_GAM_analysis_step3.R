@@ -38,15 +38,15 @@ p.gam.dim2 <- draw(gam.dim2, scales = "fixed", residuals = TRUE)
 #p.gam.dim1[[6]] -> isothermality
 #p.gam.dim1[[7]] -> Tseasonality
 #p.gam.dim1[[8]] -> PT
-#p.gam.dim1[[9]] -> COD
-#p.gam.dim1[[10]] -> NO3
+#p.gam.dim1[[9]] -> NO3
+#p.gam.dim1[[10]] -> COD
 
 
 cowplot::plot_grid( p.gam.dim1[[2]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "PC1 - Trophic diversity", x = "Lake area (km²)", title = ""),
                     p.gam.dim1[[4]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "PC1 - Trophic diversity", x = "Shoreline development index", title = ""),
-                    p.gam.dim1[[9]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "PC1 - Trophic diversity", x = "Dissolved organic carbon (mg/L)", title = ""),         
+                    p.gam.dim1[[10]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "PC1 - Trophic diversity", x = "Dissolved organic carbon (mg/L)", title = ""),         
                     p.gam.dim1[[6]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "PC1 - Trophic diversity", x = "Isothermality", title = ""),
-                    p.gam.dim1[[10]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "PC1 - Trophic diversity", x = "Nitrate (mg/L)", title = ""),
+                    p.gam.dim1[[9]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "PC1 - Trophic diversity", x = "Nitrate (mg/L)", title = ""),
                     labels = "AUTO",
                     nrow = 3,
                     align = "hv")

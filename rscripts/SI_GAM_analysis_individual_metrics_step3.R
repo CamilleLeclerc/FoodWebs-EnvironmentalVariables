@@ -55,20 +55,20 @@ cowplot::plot_grid(p.gam.dim1[[2]] + geom_hline(yintercept = 0, linetype = 'dash
                    p.gam.srinvertebrate[[4]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Invertebrate richness", x = "Shoreline development index", title = ""),
                    p.gam.LD[[4]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Link density", x = "Shoreline development index", title = ""),
                    
-                   p.gam.dim1[[9]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "PC1 - Trophic diversity", x = "Dissolved organic carbon (mg/L)", title = ""),
-                   p.gam.srtotal[[9]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Taxa richness", x = "Dissolved organic carbon (mg/L)", title = ""),
-                   p.gam.srinvertebrate[[9]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Invertebrate richness", x = "Dissolved organic carbon (mg/L)", title = ""),
-                   p.gam.LD[[9]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Link density", x = "Dissolved organic carbon (mg/L)", title = ""),
+                   p.gam.dim1[[10]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "PC1 - Trophic diversity", x = "Dissolved organic carbon (mg/L)", title = ""),
+                   p.gam.srtotal[[10]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Taxa richness", x = "Dissolved organic carbon (mg/L)", title = ""),
+                   p.gam.srinvertebrate[[10]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Invertebrate richness", x = "Dissolved organic carbon (mg/L)", title = ""),
+                   p.gam.LD[[10]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Link density", x = "Dissolved organic carbon (mg/L)", title = ""),
                    
                    p.gam.dim1[[6]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "PC1 - Trophic diversity", x = "Isothermality", title = ""),
                    p.gam.srtotal[[6]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Taxa richness", x = "Isothermality", title = ""),
                    p.gam.srinvertebrate[[6]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Invertebrate richness", x = "Isothermality", title = ""),
                    p.gam.LD[[6]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Link density", x = "Isothermality", title = ""),
                    
-                   p.gam.dim1[[10]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "PC1 - Trophic diversity", x = "Nitrate (mg/L)", title = ""),
-                   p.gam.srtotal[[10]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Taxa richness", x = "Nitrate (mg/L)", title = ""),
-                   p.gam.srinvertebrate[[10]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Invertebrate richness", x = "Nitrate (mg/L)", title = ""),
-                   p.gam.LD[[10]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Link density", x = "Nitrate (mg/L)", title = ""),
+                   p.gam.dim1[[9]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "PC1 - Trophic diversity", x = "Nitrate (mg/L)", title = ""),
+                   p.gam.srtotal[[9]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Taxa richness", x = "Nitrate (mg/L)", title = ""),
+                   p.gam.srinvertebrate[[9]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Invertebrate richness", x = "Nitrate (mg/L)", title = ""),
+                   p.gam.LD[[9]] + geom_hline(yintercept = 0, linetype = 'dashed', color = "#8c8c8c") + theme_niwot_gam() + labs(y = "Link density", x = "Nitrate (mg/L)", title = ""),
                    
                    nrow = 5,
                    align = "hv")
