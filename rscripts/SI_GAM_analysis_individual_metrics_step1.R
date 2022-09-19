@@ -105,20 +105,6 @@ gam.srtotal.best <- mgcv::gam(formula = srtotal ~
                               family = "gaussian",
                               method = "REML")  
 summary(gam.srtotal.best)
-k.check(gam.srtotal.best)
-gam.check(gam.srtotal.best)
-
-type <- "deviance"  
-resid <- residuals(gam.srtotal.best, type = type)
-linpred <- napredict(gam.srtotal.best$na.action, gam.srtotal.best$linear.predictors)
-observed.y <- napredict(gam.srtotal.best$na.action, gam.srtotal.best$y)
-par(mfrow = c(2,2))
-qq.gam(gam.srtotal.best, rep = 0, level = 0.9, type = type, rl.col = 2, rep.col = "gray80")
-hist(resid, xlab = "Residuals", main = "Histogram of residuals")
-plot(linpred, resid, main = "Resids vs. linear pred.", xlab = "linear predictor", ylab = "residuals")
-plot(fitted(gam.srtotal), observed.y, xlab = "Fitted Values", ylab = "Response", main = "Response vs. Fitted Values")
-
-concurvity(gam.srtotal.best, full = TRUE)
 
 saveRDS(gam.srtotal.best, "outputs/SI_IndividualMetricsAnalysis/gam_srtotal_reduce_model.rds")
 
@@ -155,20 +141,6 @@ gam.srinvertebrate.best <- mgcv::gam(formula = srinvertebrate ~
                               family = "gaussian",
                               method = "REML")  
 summary(gam.srinvertebrate.best)
-k.check(gam.srinvertebrate.best)
-gam.check(gam.srinvertebrate.best)
-
-type <- "deviance"  
-resid <- residuals(gam.srinvertebrate.best, type = type)
-linpred <- napredict(gam.srinvertebrate.best$na.action, gam.srinvertebrate.best$linear.predictors)
-observed.y <- napredict(gam.srinvertebrate.best$na.action, gam.srinvertebrate.best$y)
-par(mfrow = c(2,2))
-qq.gam(gam.srinvertebrate.best, rep = 0, level = 0.9, type = type, rl.col = 2, rep.col = "gray80")
-hist(resid, xlab = "Residuals", main = "Histogram of residuals")
-plot(linpred, resid, main = "Resids vs. linear pred.", xlab = "linear predictor", ylab = "residuals")
-plot(fitted(gam.srinvertebrate), observed.y, xlab = "Fitted Values", ylab = "Response", main = "Response vs. Fitted Values")
-
-concurvity(gam.srinvertebrate.best, full = TRUE)
 
 saveRDS(gam.srinvertebrate.best, "outputs/SI_IndividualMetricsAnalysis/gam_srinvertebrate_reduce_model.rds")
 
@@ -205,20 +177,6 @@ gam.LD.best <- mgcv::gam(formula = LD ~ s(sp_resid_LD, bs = "cr", k = 3) +
                                      family = "gaussian",
                                      method = "REML")  
 summary(gam.LD.best)
-k.check(gam.LD.best)
-gam.check(gam.LD.best)
-
-type <- "deviance"  
-resid <- residuals(gam.LD.best, type = type)
-linpred <- napredict(gam.LD.best$na.action, gam.LD.best$linear.predictors)
-observed.y <- napredict(gam.LD.best$na.action, gam.LD.best$y)
-par(mfrow = c(2,2))
-qq.gam(gam.LD.best, rep = 0, level = 0.9, type = type, rl.col = 2, rep.col = "gray80")
-hist(resid, xlab = "Residuals", main = "Histogram of residuals")
-plot(linpred, resid, main = "Resids vs. linear pred.", xlab = "linear predictor", ylab = "residuals")
-plot(fitted(gam.LD), observed.y, xlab = "Fitted Values", ylab = "Response", main = "Response vs. Fitted Values")
-
-concurvity(gam.LD.best, full = TRUE)
 
 saveRDS(gam.LD.best, "outputs/SI_IndividualMetricsAnalysis/gam_LD_reduce_model.rds")
 
@@ -255,20 +213,6 @@ gam.srvertebrate.best <- mgcv::gam(formula = srvertebrate ~ s(sp_resid_srvertebr
                                      family = "gaussian",
                                      method = "REML")  
 summary(gam.srvertebrate.best)
-k.check(gam.srvertebrate.best)
-gam.check(gam.srvertebrate.best)
-
-type <- "deviance"  
-resid <- residuals(gam.srvertebrate.best, type = type)
-linpred <- napredict(gam.srvertebrate.best$na.action, gam.srvertebrate.best$linear.predictors)
-observed.y <- napredict(gam.srvertebrate.best$na.action, gam.srvertebrate.best$y)
-par(mfrow = c(2,2))
-qq.gam(gam.srvertebrate.best, rep = 0, level = 0.9, type = type, rl.col = 2, rep.col = "gray80")
-hist(resid, xlab = "Residuals", main = "Histogram of residuals")
-plot(linpred, resid, main = "Resids vs. linear pred.", xlab = "linear predictor", ylab = "residuals")
-plot(fitted(gam.srvertebrate), observed.y, xlab = "Fitted Values", ylab = "Response", main = "Response vs. Fitted Values")
-
-concurvity(gam.srvertebrate.best, full = TRUE)
 
 saveRDS(gam.srvertebrate.best, "outputs/SI_IndividualMetricsAnalysis/gam_srvertebrate_reduce_model.rds")
 
@@ -305,20 +249,6 @@ gam.MFCL.best <- mgcv::gam(formula = MFCL ~
                                    family = "gaussian",
                                    method = "REML")  
 summary(gam.MFCL.best)
-k.check(gam.MFCL.best)
-gam.check(gam.MFCL.best)
-
-type <- "deviance"  
-resid <- residuals(gam.MFCL.best, type = type)
-linpred <- napredict(gam.MFCL.best$na.action, gam.MFCL.best$linear.predictors)
-observed.y <- napredict(gam.MFCL.best$na.action, gam.MFCL.best$y)
-par(mfrow = c(2,2))
-qq.gam(gam.MFCL.best, rep = 0, level = 0.9, type = type, rl.col = 2, rep.col = "gray80")
-hist(resid, xlab = "Residuals", main = "Histogram of residuals")
-plot(linpred, resid, main = "Resids vs. linear pred.", xlab = "linear predictor", ylab = "residuals")
-plot(fitted(gam.MFCL), observed.y, xlab = "Fitted Values", ylab = "Response", main = "Response vs. Fitted Values")
-
-concurvity(gam.MFCL.best, full = TRUE)
 
 saveRDS(gam.MFCL.best, "outputs/SI_IndividualMetricsAnalysis/gam_MFCL_reduce_model.rds")
 
@@ -355,19 +285,5 @@ gam.MTL.best <- mgcv::gam(formula = MTL ~ s(sp_resid_MTL, bs = "cr", k = 3) +
                            family = "gaussian",
                            method = "REML")  
 summary(gam.MTL.best)
-k.check(gam.MTL.best)
-gam.check(gam.MTL.best)
-
-type <- "deviance"  
-resid <- residuals(gam.MTL.best, type = type)
-linpred <- napredict(gam.MTL.best$na.action, gam.MTL.best$linear.predictors)
-observed.y <- napredict(gam.MTL.best$na.action, gam.MTL.best$y)
-par(mfrow = c(2,2))
-qq.gam(gam.MTL.best, rep = 0, level = 0.9, type = type, rl.col = 2, rep.col = "gray80")
-hist(resid, xlab = "Residuals", main = "Histogram of residuals")
-plot(linpred, resid, main = "Resids vs. linear pred.", xlab = "linear predictor", ylab = "residuals")
-plot(fitted(gam.MTL), observed.y, xlab = "Fitted Values", ylab = "Response", main = "Response vs. Fitted Values")
-
-concurvity(gam.MTL.best, full = TRUE)
 
 saveRDS(gam.MTL.best, "outputs/SI_IndividualMetricsAnalysis/gam_MTL_reduce_model.rds")

@@ -51,9 +51,9 @@ envdata <- envdata%>% dplyr::select(-cd.lac)
 chart.Correlation(envdata)
 keep.dat <- vif_func(in_frame = envdata, thresh = 3, trace = T)
 
-
-
-
+colnames(envdata)
+envdata <- scale(envdata, center = TRUE, scale = TRUE)
+envdata <- as.data.frame(envdata)
 ##----------------------------------
 # GENERALIZED ADDITIVE MODELS (GAMs)
 ##----------------------------------
@@ -100,21 +100,6 @@ gam.dim1.best <- mgcv::gam(formula = dim1 ~
                            family = "gaussian",
                            method = "REML")    
 summary(gam.dim1.best)
-k.check(gam.dim1.best)
-gam.check(gam.dim1.best) #https://noamross.github.io/gams-in-r-course/chapter2
-
-type <- "deviance"  
-resid <- residuals(gam.dim1.best, type = type)
-linpred <- napredict(gam.dim1.best$na.action, gam.dim1.best$linear.predictors)
-observed.y <- napredict(gam.dim1.best$na.action, gam.dim1.best$y)
-par(mfrow = c(2,2))
-qq.gam(gam.dim1.best, rep = 0, level = 0.9, type = type, rl.col = 2, rep.col = "gray80")
-hist(resid, xlab = "Residuals", main = "Histogram of residuals")
-plot(linpred, resid, main = "Resids vs. linear pred.", xlab = "linear predictor", ylab = "residuals")
-plot(fitted(gam.dim1), observed.y, xlab = "Fitted Values", ylab = "Response", main = "Response vs. Fitted Values")
-
-concurvity(gam.dim1.best, full = TRUE)
-
 saveRDS(gam.dim1.best, "outputs/gam_dim1_reduce_model.rds")
 
 
@@ -152,19 +137,4 @@ gam.dim2.best <- mgcv::gam(formula = dim2 ~ s(sp_resid_dim2, bs = "cr", k = 3) +
                            family = "gaussian",
                            method = "REML")  
 summary(gam.dim2.best)
-k.check(gam.dim2.best)
-gam.check(gam.dim2.best) #https://noamross.github.io/gams-in-r-course/chapter2
-
-type <- "deviance"  
-resid <- residuals(gam.dim2.best, type = type)
-linpred <- napredict(gam.dim2.best$na.action, gam.dim2.best$linear.predictors)
-observed.y <- napredict(gam.dim2.best$na.action, gam.dim2.best$y)
-par(mfrow = c(2,2))
-qq.gam(gam.dim2.best, rep = 0, level = 0.9, type = type, rl.col = 2, rep.col = "gray80")
-hist(resid, xlab = "Residuals", main = "Histogram of residuals")
-plot(linpred, resid, main = "Resids vs. linear pred.", xlab = "linear predictor", ylab = "residuals")
-plot(fitted(gam.dim2), observed.y, xlab = "Fitted Values", ylab = "Response", main = "Response vs. Fitted Values")
-
-concurvity(gam.dim2.best, full = TRUE)
-
 saveRDS(gam.dim2.best, "outputs/gam_dim2_reduce_model.rds")
