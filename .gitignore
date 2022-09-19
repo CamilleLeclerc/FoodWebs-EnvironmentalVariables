@@ -3,6 +3,11 @@
 .RData
 .Ruserdata
 
+data/envdata.rda
 data/ind_size.rda
+data/list_lake.rda
 data/Param_regvert.Rdata
 data/Param_reginvert.Rdata
+data/taxa_presence.rda
+data/taxa_size.rda
+data/taxa_weight.rda
