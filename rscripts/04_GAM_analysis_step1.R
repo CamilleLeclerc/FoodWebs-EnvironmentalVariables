@@ -51,9 +51,9 @@ envdata <- envdata%>% dplyr::select(-cd.lac)
 chart.Correlation(envdata)
 keep.dat <- vif_func(in_frame = envdata, thresh = 3, trace = T)
 
-colnames(envdata)
-envdata <- scale(envdata, center = TRUE, scale = TRUE)
-envdata <- as.data.frame(envdata)
+
+
+
 ##----------------------------------
 # GENERALIZED ADDITIVE MODELS (GAMs)
 ##----------------------------------
