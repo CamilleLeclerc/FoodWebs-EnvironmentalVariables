@@ -176,3 +176,46 @@ for (i in 1:nrow(overlap_niche_minsize)){
   overlap_niche_minsize[i, 12] <- perc_overlap(niche_attributes$low[i], niche_attributes$upp[i], niche_attributes_realized_minsize$low[i], niche_attributes_realized_minsize$upp[i])
 }
 rm(i)
+
+
+
+
+
+
+##---------------------------------------------------------------------------------
+##COMPARING FOOD WEB METRICS FROM LITERATURE BASED-BODY SIZE AND REALIZED BODY SIZE
+##---------------------------------------------------------------------------------
+myload(topological_metrics, topological_metrics_based_on_empirical_data, dir = mypath("outputs"))
+
+
+overlap_metric <- data.frame(matrix(NA, nrow = ncol(topological_metrics)-1, ncol = 10))
+colnames(overlap_metric) <- c("metric", "mean.lit", "sd.lit", "min.lit", "max.lit", "mean.rea", "sd.rea", "min.rea", "max.rea", "perc_overlap")
+
+for (i in 2:ncol(topological_metrics)){ 
+  overlap_metric[i-1, 1] <- colnames(topological_metrics)[i]
+  overlap_metric[i-1, 2] <- mean(topological_metrics[,i]) %>% round(., digits = 2)
+  overlap_metric[i-1, 3] <- sd(topological_metrics[,i]) %>% round(., digits = 2)
+  overlap_metric[i-1, 4] <- min(topological_metrics[,i]) %>% round(., digits = 2)
+  overlap_metric[i-1, 5] <- max(topological_metrics[,i]) %>% round(., digits = 2)
+  overlap_metric[i-1, 6] <- mean(topological_metrics_based_on_empirical_data[,i]) %>% round(., digits = 2)
+  overlap_metric[i-1, 7] <- sd(topological_metrics_based_on_empirical_data[,i]) %>% round(., digits = 2)
+  overlap_metric[i-1, 8] <- min(topological_metrics_based_on_empirical_data[,i]) %>% round(., digits = 2)
+  overlap_metric[i-1, 9] <- max(topological_metrics_based_on_empirical_data[,i]) %>% round(., digits = 2)
+  overlap_metric[i-1, 10] <- perc_overlap(overlap_metric[i-1, 4], 
+                                         overlap_metric[i-1, 5],
+                                         overlap_metric[i-1, 8],
+                                         overlap_metric[i-1, 9]) %>% round(., digits = 1)
+}
+rm(i)
+
+
+
+
+
+
+##---------------------------------------------------------------------------------
+##COMPARING PREY ITEMS FROM LITERATURE BASED-BODY SIZE AND REALIZED BODY SIZE
+##---------------------------------------------------------------------------------
+myload(metaweb, metaweb_based_on_empirical_data, dir = mypath("data"))
+sort(colSums(metaweb))
+sort(colSums(metaweb_based_on_empirical_data))

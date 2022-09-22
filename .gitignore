@@ -17,4 +17,6 @@ data/taxa_size.rda
 data/taxa_weight.rda
 outputs/LakeFoodWebsBasedOnEmpiricalData/
 outputs/TopologicalMetricsBasedOnEmpiricalData/
+outputs/topological_metrics_based_on_empirical_data.rda
+rscripts/SI_compilation_topological_metrics.R
 rscripts/SI_food_web_reconstruction_with_empirical_fish_body_size.R
