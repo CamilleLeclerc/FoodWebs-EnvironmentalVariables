@@ -3,11 +3,18 @@
 .RData
 .Ruserdata
 
+data/empirical_fish_size_weight.rda
 data/envdata.rda
 data/ind_size.rda
+data/inferred_pred_prey_links_based_on_empirical_data.rda
 data/list_lake.rda
+data/metaweb_based_on_empirical_data.rda
+data/niche_attributes_based_on_empirical_data.rda
 data/Param_regvert.Rdata
 data/Param_reginvert.Rdata
 data/taxa_presence.rda
 data/taxa_size.rda
 data/taxa_weight.rda
+outputs/LakeFoodWebsBasedOnEmpiricalData/
+outputs/TopologicalMetricsBasedOnEmpiricalData/
+rscripts/SI_food_web_reconstruction_with_empirical_fish_body_size.R
