@@ -213,9 +213,12 @@ rm(i)
 
 
 
-##---------------------------------------------------------------------------------
+##---------------------------------------------------------------------------
 ##COMPARING PREY ITEMS FROM LITERATURE BASED-BODY SIZE AND REALIZED BODY SIZE
-##---------------------------------------------------------------------------------
+##---------------------------------------------------------------------------
 myload(metaweb, metaweb_based_on_empirical_data, dir = mypath("data"))
 sort(colSums(metaweb))
 sort(colSums(metaweb_based_on_empirical_data))
+
+#https://stackoverflow.com/questions/3695677/how-to-find-common-elements-from-multiple-vectors
+
