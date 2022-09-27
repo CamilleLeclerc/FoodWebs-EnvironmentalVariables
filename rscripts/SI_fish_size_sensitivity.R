@@ -220,5 +220,27 @@ myload(metaweb, metaweb_based_on_empirical_data, dir = mypath("data"))
 sort(colSums(metaweb))
 sort(colSums(metaweb_based_on_empirical_data))
 
-#https://stackoverflow.com/questions/3695677/how-to-find-common-elements-from-multiple-vectors
+class(metaweb)
+class(metaweb_based_on_empirical_data)
+metaweb_based_on_empirical_data <- as.data.frame(metaweb_based_on_empirical_data)
+colnames(metaweb) == colnames(metaweb_based_on_empirical_data)
+
+common_prey <- data.frame(matrix(NA, nrow = 46, ncol = 3))
+colnames(common_prey) <- c("Species", "common_prey", "total_prey")
+
+for (i in 1:46){ 
+
+sub_metaweb <- metaweb[,i]
+sub_metaweb_based_on_empirical_data <- metaweb_based_on_empirical_data[,i]
+intersect <- cbind(sub_metaweb, sub_metaweb_based_on_empirical_data)
+
+common_prey[i, 1] <- colnames(metaweb)[i]
+common_prey[i, 2] <- nrow(intersect %>% as.data.frame(.) %>% dplyr::filter(sub_metaweb == 1 & sub_metaweb_based_on_empirical_data == 1))
+common_prey[i, 3] <- nrow(intersect %>% as.data.frame(.) %>% dplyr::filter(sub_metaweb == 1 | sub_metaweb_based_on_empirical_data == 1))
+
+}
+
+rm(i)
+
+
 
