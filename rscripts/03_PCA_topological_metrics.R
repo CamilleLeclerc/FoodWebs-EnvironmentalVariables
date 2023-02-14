@@ -7,9 +7,12 @@ mypath <- rprojroot::find_package_root_file
 ##------------------------------
 ##PACKAGES##
 library(devtools)
+library(dplyr)
 library(factoextra)
 library(FactoMineR)
 library(ggbiplot)
+library(tidyr)
+library(viridis)
 
 
 ##FUNCTIONS##
@@ -21,6 +24,13 @@ myload(topological_metrics, dir = mypath("outputs"))
 rownames(topological_metrics) <- topological_metrics$cd.lac
 topological_metrics <- topological_metrics %>% dplyr::select(-cd.lac)
 colnames(topological_metrics)
+colnames(topological_metrics) <- c("Taxa rich.", "Fish rich.", "Invertebr. rich.",
+                                   "Body size", "Body mass ratio",
+                                   "No. links", "Link dens.", "Connect.",
+                                   "Gen.", "Vul.", "Gen. SD", "Vul. SD",
+                                   "Frac. bas.", "Frac. int.", "Frac. top",
+                                   "Max. Sim.", "MFCL",
+                                   "Mean TL", "Max. TL", "Cluster. coef.")
 
 
 
@@ -50,7 +60,19 @@ res.pca$ind
 lake_pca_coord <- res.pca$ind$coord[,1:4]
 mysave(lake_pca_coord, dir = mypath("outputs"), overwrite = TRUE)
 
-
+get_pca_var(res.pca)$contrib%>%
+  data.frame()%>%
+  dplyr::select(Dim.1, Dim.2)%>%
+  mutate(sp=rownames(.))%>%
+  gather(key = "dim", value = "value", Dim.1:Dim.2) %>%
+  ggplot(aes(x = sp, y = value, fill = dim)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  scale_fill_manual(values = c("#440154FF", "#21908CFF")) +
+  theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+                     axis.text = element_text(size = 14, colour = "#000000"),
+                     axis.title = element_text(size = 18, colour = "#000000", face = "bold"),
+                     axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  xlab("") + ylab(paste("Contributions to the  \n principal components (%)"))
 
 
 data.pca <- prcomp(topological_metrics, scale. = TRUE, retx = -1)
