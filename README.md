@@ -1,5 +1,5 @@
 # FoodWebs-EnvironmentalVariables
-📦 Data and R code used in [Leclerc *et al.* (submitted)](https://doi.org/) to explore how environmental variables are shaping lake food webs structure.  
+📦 Data and R code used in [Leclerc *et al.* (accepted)](https://doi.org/) to explore how environmental variables are shaping lake food web structure.  
 
 ---
 # Content
